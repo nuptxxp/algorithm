@@ -2,10 +2,15 @@
  * @author pengxiangxiong@baidu.com
  * @version 2016/02/18
  */
+#ifndef ALGORITHM__VECTOR_H_
+#define ALGORITHM__VECTOR_H_
 
 #include <iostream>
+
+/*
 #include <assert.h>
 using namespace std;
+*/
 
 namespace algorithm
 {
@@ -108,12 +113,12 @@ class Vector {
 };
 
 }
-
+/*
 typedef algorithm::Vector<int> Vector;
 int main()
 {
     Vector v1(10);
-    for (Vector::iterator it = v1.begin(); it != v1.end(); ++it) {
+    for (Vector::iterator it = v1.begin(); it != v1.end(); it++) {
         assert(*it == 0);
     }
     Vector v2;
@@ -135,5 +140,8 @@ int main()
     }
     return 0;
 }
+*/
+#endif
+
 //vim: set expandtab ts=4 sw=4 sts=4 tw=100:
 
