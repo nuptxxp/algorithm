@@ -15,11 +15,12 @@ class Vector {
     public:
         explicit Vector(int initSize = 0) {
             initSize = initSize < 0 ? 0 : initSize;
-            _size = 0;
+            _size = initSize;
             _capacity = initSize + SPARE_CAPACITY;
             objects = new Object[_capacity];
         }
         Vector(const Vector& others) {
+            objects = NULL;
             operator=(others);
         }
         ~Vector() {
@@ -111,8 +112,11 @@ class Vector {
 typedef algorithm::Vector<int> Vector;
 int main()
 {
-    Vector v1;
-    Vector v2(10);
+    Vector v1(10);
+    for (Vector::iterator it = v1.begin(); it != v1.end(); ++it) {
+        assert(*it == 0);
+    }
+    Vector v2;
     for (int i = 0; i < 10; ++i) {
         v2.push_back(i);
     }
