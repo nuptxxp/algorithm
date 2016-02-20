@@ -15,6 +15,9 @@ using namespace std;
 namespace algorithm
 {
 
+namespace dataStruct
+{
+
 template <typename Object>
 class Vector {
     public:
@@ -99,7 +102,7 @@ class Vector {
             return &objects[0];
         }
 
-        iterator Vector<Object>::end() {
+        iterator end() {
             return &objects[_size];
         }
 
@@ -112,7 +115,10 @@ class Vector {
         Object* objects;
 };
 
-}
+}// end for namespace dataStruct
+
+}// end for namespace algorithm
+
 /*
 typedef algorithm::Vector<int> Vector;
 int main()

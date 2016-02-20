@@ -4,13 +4,14 @@
  */
 
 #include <iostream>
+#include <assert.h>
 #include "Vector.h"
 #include "List.h"
 
 using namespace std;
 
-typedef algorithm::Vector<int> Vector;
-typedef algorithm::List<int> List;
+typedef algorithm::dataStruct::Vector<int> Vector;
+typedef algorithm::dataStruct::List<int> List;
 int main()
 {
     // test for Vector
