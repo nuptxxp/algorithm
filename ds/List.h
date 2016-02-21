@@ -143,6 +143,19 @@ class List {
                 delete c;
             }
         }
+        void reverse() {
+            Node* c = head;
+            while (c) {
+                Node* n = c->next;
+                c->next = c->prev;
+                c->prev = n;
+                c = n;
+            }
+            // swap head tail
+            c = head;
+            head = tail;
+            tail = c;
+        }
     private:
         int _size;
         Node* head;

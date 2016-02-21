@@ -52,6 +52,12 @@ int main()
         cout << *it << " ";
     }
     cout << endl;
+    l.reverse();
+    cout << "after reverse" << endl;
+    for (List::iterator it = l.begin(); it != l.end(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
     List::iterator it = l.begin();
     cout << *it << endl;
     cout << l.back() << endl;
