@@ -67,7 +67,7 @@ class Vector {
             _capacity = newCapacity;
             delete [] old;
         }
-        Object& operator[](int index) {
+        Object& operator[](int index) const{
             return objects[index];
         }
         bool empty() const {

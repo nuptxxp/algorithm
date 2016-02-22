@@ -4,6 +4,7 @@
  */
 
 #include <iostream>
+#include <utility>
 #include <assert.h>
 #include "Vector.h"
 #include "List.h"
@@ -14,6 +15,7 @@ using namespace std;
 typedef algorithm::dataStruct::Vector<int> Vector;
 typedef algorithm::dataStruct::List<int> List;
 typedef algorithm::dataStruct::Stack<int> Stack;
+typedef algorithm::dataStruct::Stack< pair<int, int> > PStack;
 int main()
 {
     // test for Vector
@@ -32,6 +34,8 @@ int main()
     assert(v3.size() == 20);
     assert(v3[2] == 2);
     assert(v2.back() == 9);
+    v3[2] = 5;
+    assert(v2[2] == 2);
     v2.pop_back();
     assert(v2.back() == 8);
     int index = 0;
@@ -76,10 +80,27 @@ int main()
     s.push(1);
     s.push(5);
     s.push(9);
+    Stack n = s;
     cout << "size: " << s.size() << " ele:";
     while (!s.empty()) {
         cout << " " << s.top();
         s.pop();
+    }
+    cout << endl;
+    cout << "size: " << n.size() << " ele:";
+    while (!n.empty()) {
+        cout << " " << n.top();
+        n.pop();
+    }
+    cout << endl;
+
+    PStack ps;
+    ps.push(pair<int,int>(1,2));
+    ps.push(pair<int,int>(2,3));
+    ps.push(pair<int,int>(3,4));
+    while (!ps.empty()) {
+        cout << " " << ps.top().first << ps.top().second;
+        ps.pop();
     }
     cout << endl;
     return 0;

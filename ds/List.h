@@ -169,6 +169,11 @@ class List {
             tail->prev = head;
             tail->next = NULL;
         }
+        void goStep(Node* p, int step) {
+            if (step <= 0) return;
+            while (step-- && p) p = p->next;
+            return p;
+        }
 
 };
 

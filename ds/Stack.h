@@ -21,14 +21,14 @@ class Stack {
         Stack(const Stack& s) {
             int size = s.v.size();
             v.resize(size);
-            for (int i = size - 1; i >= 0; ++i) {
+            for (int i = size - 1; i >= 0; --i) {
                 v[i] = s.v[i];
             }
         }
         ~Stack() {
         }
         const Object& top() {
-            return v[v.size()-1];
+            return v.back();
         }
         void pop() {
             v.pop_back();
@@ -37,7 +37,7 @@ class Stack {
             v.push_back(t);
         }
         bool empty() {
-            return v.size() == 0;
+            return v.empty();
         }
         int size() {
             return v.size();
