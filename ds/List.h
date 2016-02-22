@@ -130,6 +130,7 @@ class List {
         iterator insert(iterator itr, const Object& x) {
             Node* c = itr.current;
             if (c->prev != NULL) {
+                _size ++;
                 Node* t = new Node(x, c->prev, c);
                 return iterator(c->prev = c->prev->next = t);
             } 
@@ -138,6 +139,7 @@ class List {
         void erase(iterator itr) {
             Node* c = itr.current;
             if (c) {
+                _size --;
                 c->prev->next = c->next;
                 c->next->prev = c->prev;
                 delete c;

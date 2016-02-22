@@ -9,6 +9,7 @@
 #include "Vector.h"
 #include "List.h"
 #include "Stack.h"
+#include "Queue.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ typedef algorithm::dataStruct::Vector<int> Vector;
 typedef algorithm::dataStruct::List<int> List;
 typedef algorithm::dataStruct::Stack<int> Stack;
 typedef algorithm::dataStruct::Stack< pair<int, int> > PStack;
+typedef algorithm::dataStruct::Queue< pair<int, int> > Queue;
 int main()
 {
     // test for Vector
@@ -49,11 +51,14 @@ int main()
     cout << "-------------------------------------" << endl;
     cout << "test List" << endl;
     List l;
+    assert(l.empty());
     for (int i = 0; i < 10; ++i) {
         l.push_back(i);
     }
     assert(l.front() == 0);
     assert(l.back() == 9);
+    assert(l.size() == 10);
+    assert(!l.empty());
     for (List::iterator it = l.begin(); it != l.end(); ++it) {
         cout << *it << " ";
     }
@@ -99,10 +104,21 @@ int main()
     ps.push(pair<int,int>(2,3));
     ps.push(pair<int,int>(3,4));
     while (!ps.empty()) {
-        cout << " " << ps.top().first << ps.top().second;
+        cout << ps.top().first << " " << ps.top().second << " ";
         ps.pop();
     }
     cout << endl;
+
+
+    // test for queue
+    cout << "test for queue" << endl;
+    Queue q;
+    q.push(pair<int,int>(1,2));
+    q.push(pair<int,int>(2,3));
+    while (!q.empty()) {
+        cout << " " << q.front().first << " " << q.front().second << endl;
+        q.pop();
+    }
     return 0;
 }
 
