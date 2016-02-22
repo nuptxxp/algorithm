@@ -4,8 +4,8 @@ PUBLIC = ../public
 FLAGS=-Wall -g -Dprivate=public -Dprotected=public
 CXX=g++
 
-all : main
-main : main.cpp Vector.h List.h
+all : clean main
+main : main.cpp *.h
 	$(CXX) $^ -o $@ $(FLAGS)
 clean:
 	rm main

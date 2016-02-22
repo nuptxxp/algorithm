@@ -46,6 +46,9 @@ class Vector {
             }
             return *this;
         }
+        void clear() {
+            _size = 0;
+        }
         void resize(int newSize) {
             if (newSize >= _capacity) {
                 reserve(_capacity * 2 + 1);

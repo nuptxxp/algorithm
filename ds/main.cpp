@@ -7,11 +7,13 @@
 #include <assert.h>
 #include "Vector.h"
 #include "List.h"
+#include "Stack.h"
 
 using namespace std;
 
 typedef algorithm::dataStruct::Vector<int> Vector;
 typedef algorithm::dataStruct::List<int> List;
+typedef algorithm::dataStruct::Stack<int> Stack;
 int main()
 {
     // test for Vector
@@ -65,6 +67,21 @@ int main()
     l2.pop_front();
     cout << l2.front() << endl;
     cout << l.front() << endl;
+
+
+    // test for stack
+    cout << "--------------------------------------" << endl;
+    cout << "test stack" << endl;
+    Stack s;
+    s.push(1);
+    s.push(5);
+    s.push(9);
+    cout << "size: " << s.size() << " ele:";
+    while (!s.empty()) {
+        cout << " " << s.top();
+        s.pop();
+    }
+    cout << endl;
     return 0;
 }
 
