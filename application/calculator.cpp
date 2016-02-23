@@ -11,6 +11,7 @@
 
 using namespace algorithm::dataStruct;
 
+const int MAX_LINE_LENGTH = 10240;
 // 10^0 ~ 9
 const int tenFac[] = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000};
 // operator about calculator
@@ -248,8 +249,8 @@ int calculator(List<Token>& v) {
 }
 
 int main() {
-    char line[1024];
-    while (fgets(line, 1024, stdin)) {
+    char line[MAX_LINE_LENGTH];
+    while (fgets(line, sizeof(line), stdin)) {
         try {
             List<Token> l = infixConvert(getToken(line));
             std :: cout << calculator(l) << '\n';
