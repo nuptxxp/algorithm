@@ -48,11 +48,7 @@ int getType(char t) {
 }
 
 struct Token {
-    Token() {
-        num = 0;
-        type = NUMBER;
-    }
-    Token(int n) {
+    Token(int n = 0) {
         num = n;
         type = NUMBER;
     } 
