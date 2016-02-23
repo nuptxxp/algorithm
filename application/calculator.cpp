@@ -18,8 +18,8 @@ const int tenFac[] = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000
 const char operators[] = {'(', ')', '+', '-', '*', '/', '%'};
 const char operatorNums = 7;
 // operator in stack and out stack priority
-const int inPriority[] = {0, 0, 1, 2, 2, 2, 2};
-const int outPriority[] = {3, 3, 1, 2, 2, 2, 2};
+const int inPriority[] = {0, 0, 1, 1, 2, 2, 2};
+const int outPriority[] = {3, 3, 1, 1, 2, 2, 2};
 // char type
 enum {
     NUMBER = 0,
@@ -100,7 +100,7 @@ Vector<Token> getToken(char *p) {
                 numStack.push(t);
                 break;
             case OPERATOR:
-                token.push_back(Token(t)); 
+                token.push_back(Token(t));
                 break;
             case SPACE:
                 break;
@@ -120,8 +120,8 @@ Vector<Token> getToken(char *p) {
     return token;
 }
 
-List<Token> infixConvert(const Vector<Token>& infix) {
-    List<Token> suffix;
+Vector<Token> infixConvert(const Vector<Token>& infix) {
+    Vector<Token> suffix;
     Stack<Token> ops;
     for (int i = 0; i < infix.size(); ++i) {
         Token t = infix[i];
@@ -248,12 +248,68 @@ int calculator(List<Token>& v) {
     return v.front().num;
 }
 
+/*
+ * O(n + operator) use stack
+ * not recursion, faster and better than before
+ */
+int calculator(Vector<Token>& v) {
+    Stack<int> s;
+    for (Vector<Token>::iterator it = v.begin(); it != v.end(); ++it) {
+        Token c = *it;
+        if (c.type == OPERATOR) {
+            if (s.empty()) {
+                throw std::runtime_error("no lval rval found");
+            }
+            int rval = s.top();
+            s.pop();
+            if (s.empty()) {
+                throw std::runtime_error("no lval rval found");
+            }
+            int lval = s.top();
+            s.pop();
+            int ret = 0;
+            switch (c.op) {
+                case '+':
+                    ret = lval + rval;
+                    break;
+                case '-':
+                    ret = lval - rval;
+                    break;
+                case '*':
+                    ret = lval * rval;
+                    break;
+                case '/':
+                    if (rval == 0) {
+                        throw std::runtime_error("dived by 0 error");
+                    }
+                    ret = lval / rval;
+                    break;
+                case '%':
+                    if (rval == 0) {
+                        throw std::runtime_error("dived by 0 error");
+                    }
+                    ret = lval % rval;
+                    break;
+                default:
+                    throw std::runtime_error("unrecorgnize operator found");
+            }
+            s.push(ret);
+        } else {
+            s.push(c.num);
+        }
+    }
+    if (s.size() != 1) {
+        throw std::runtime_error("last result error");
+    }
+    return s.top();
+}
+
 int main() {
     char line[MAX_LINE_LENGTH];
     while (fgets(line, sizeof(line), stdin)) {
         try {
-            List<Token> l = infixConvert(getToken(line));
-            std :: cout << calculator(l) << '\n';
+            Vector<Token> token = infixConvert(getToken(line));
+            std :: cout << calculator(token) << '\n';
         } catch (const std::invalid_argument& ia) {
             std::cerr << "Invalid input argument: " << ia.what() << '\n';
         } catch (const std::runtime_error& ia) {
