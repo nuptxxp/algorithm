@@ -70,6 +70,11 @@ int main()
     }
     cout << endl;
     List::iterator it = l.begin();
+    it++;
+    List::iterator it2 = it;
+    it2++;
+    l.erase(it2);
+    l.erase(it);
     cout << *it << endl;
     cout << l.back() << endl;
     List l2 = l;

@@ -42,7 +42,7 @@ class List {
                     return *this;
                 }
                 const iterator& operator++(int) {
-                    iterator old = *this;
+                    iterator& old = *this;
                     ++(*this);
                     return old;
                 }
@@ -51,7 +51,7 @@ class List {
                     return *this;
                 }
                 const iterator& operator--(int) {
-                    iterator old = *this;
+                    iterator& old = *this;
                     --(*this);
                     return old;
                 }

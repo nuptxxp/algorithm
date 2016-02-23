@@ -4,8 +4,8 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include "Stack.h"
-#include "Vector.h"
 
 using namespace algorithm::dataStruct;
 
@@ -25,8 +25,8 @@ bool match(char* context) {
     while (*context) {
         int index = in_brace(*context);
         if (index != -1) {
-            if (index&1) {
-                if (s.empty()) {
+            if (index&1) { // if } , ) , ]
+                if (s.empty()) { // no {, (, [ found
                     return false;
                 } else {
                     char match = BRACE[index - 1];
@@ -43,8 +43,37 @@ bool match(char* context) {
     return s.empty();
 }
 
-int main() {
-    char* text = "hll{}[]()";
+char* read_from_file(const char* filename, int *len) {
+    char* data;
+    FILE* fp = fopen(filename, "r");
+    if (!fp) {
+        *len = 0;
+        return NULL;
+    }
+    fseek(fp, 0, SEEK_END);
+    *len = ftell(fp);
+    data = new char[(*len) + 1];
+    rewind(fp);
+    *len = fread(data, sizeof(char), *len, fp);
+    data[*len] = '\0';
+    fclose(fp);
+    return data;
+}
+
+int main(int argc, char* argv[]) {
+    char* filename = NULL;
+    if (argc != 2) {
+        std::cout << "args filename necessery!" << std::endl;
+        return 1;
+    } else {
+        filename = argv[1];
+    }
+    int length = 0;
+    char* text = read_from_file(filename, &length);
+    if (!text) {
+        std::cout << "file can't open or empty!" << std::endl;
+        return 1;
+    }
     if (match(text)) {
         std::cout << "match success" << std::endl;
     } else {
