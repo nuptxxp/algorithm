@@ -10,6 +10,7 @@
 #include "List.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "BinarySearchTree.h"
 
 using namespace std;
 
@@ -18,10 +19,12 @@ typedef algorithm::dataStruct::List<int> List;
 typedef algorithm::dataStruct::Stack<int> Stack;
 typedef algorithm::dataStruct::Stack< pair<int, int> > PStack;
 typedef algorithm::dataStruct::Queue< pair<int, int> > Queue;
+typedef algorithm::dataStruct::BinarySearchTree<int> BinarySearchTree;
 int main()
 {
     // test for Vector
-    cout << "test Vector" << endl;
+    cout << "-------------------------------------" << endl;
+    cout << "------------test Vector--------------" << endl;
     Vector v1(10);
     for (Vector::iterator it = v1.begin(); it != v1.end(); it++) {
         assert(*it == 0);
@@ -45,11 +48,12 @@ int main()
         assert(*it == index);
         index ++;
     }
+    cout << "-----------test Vector ok------------" << endl;
 
 
     // test for List
     cout << "-------------------------------------" << endl;
-    cout << "test List" << endl;
+    cout << "------------test List----------------" << endl;
     List l;
     assert(l.empty());
     for (int i = 0; i < 10; ++i) {
@@ -81,11 +85,12 @@ int main()
     l2.pop_front();
     cout << l2.front() << endl;
     cout << l.front() << endl;
+    cout << "------------test List ok-------------" << endl;
 
 
     // test for stack
-    cout << "--------------------------------------" << endl;
-    cout << "test stack" << endl;
+    cout << "-------------------------------------" << endl;
+    cout << "------------test stack---------------" << endl;
     Stack s;
     s.push(1);
     s.push(5);
@@ -113,6 +118,7 @@ int main()
         ps.pop();
     }
     cout << endl;
+    cout << "------------test stack ok------------" << endl;
 
 
     // test for queue
@@ -124,6 +130,28 @@ int main()
         cout << " " << q.front().first << " " << q.front().second << endl;
         q.pop();
     }
+
+
+    // test for binary Tree
+    cout << "-------------------------------------" << endl;
+    cout << "-----------test binary tree ---------" << endl;
+    BinarySearchTree BST;
+    BST.insert(5);
+    BST.insert(3);
+    BST.insert(9);
+    BST.insert(0);
+    BST.insert(-1);
+    BST.insert(-10);
+    BST.insert(0);
+    BST.print();
+    assert(BST.search(0) == 2);
+    assert(BST.search(-1) == 1);
+    assert(BST.search(5) == 1);
+    assert(BST.search(-2) == 0);
+    assert(BST.search(12) == 0);
+    assert(BST.remove(0) == 2);
+    assert(BST.search(0) == 0);
+    cout << "-----------test binary tree  end -----" << endl;
     return 0;
 }
 
