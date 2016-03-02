@@ -11,6 +11,7 @@
 #include "Stack.h"
 #include "Queue.h"
 #include "BinarySearchTree.h"
+#include "AVLTree.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ typedef algorithm::dataStruct::Stack<int> Stack;
 typedef algorithm::dataStruct::Stack< pair<int, int> > PStack;
 typedef algorithm::dataStruct::Queue< pair<int, int> > Queue;
 typedef algorithm::dataStruct::BinarySearchTree<int> BinarySearchTree;
+typedef algorithm::dataStruct::AVLTree<int> AVLTree;
 int main()
 {
     // test for Vector
@@ -152,6 +154,17 @@ int main()
     assert(BST.remove(0) == 2);
     assert(BST.search(0) == 0);
     cout << "-----------test binary tree  end -----" << endl;
+
+    // test for avl tree
+    cout << "--------------------------------------" << endl;
+    cout << "-----------test AVL tree -------------" << endl;
+    AVLTree avlt;
+    avlt.insert(5);
+    avlt.insert(0);
+    avlt.insert(-2);
+    avlt.insert(-4);
+    avlt.insert(-6);
+    avlt.print();
     return 0;
 }
 

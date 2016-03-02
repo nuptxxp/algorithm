@@ -122,34 +122,6 @@ class Vector {
 
 }// end for namespace algorithm
 
-/*
-typedef algorithm::Vector<int> Vector;
-int main()
-{
-    Vector v1(10);
-    for (Vector::iterator it = v1.begin(); it != v1.end(); it++) {
-        assert(*it == 0);
-    }
-    Vector v2;
-    for (int i = 0; i < 10; ++i) {
-        v2.push_back(i);
-    }
-    Vector v3 = v2;
-    assert(v3.size() == 10);
-    v3.resize(20);
-    assert(v3.size() == 20);
-    assert(v3[2] == 2);
-    assert(v2.back() == 9);
-    v2.pop_back();
-    assert(v2.back() == 8);
-    int index = 0;
-    for (Vector::iterator it = v2.begin(); it != v2.end(); ++it) {
-        assert(*it == index);
-        index ++;
-    }
-    return 0;
-}
-*/
 #endif
 
 //vim: set expandtab ts=4 sw=4 sts=4 tw=100:
